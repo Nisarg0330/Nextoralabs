@@ -1,26 +1,279 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------------------------------------------------------------------------
+   Nextora Labs — design tokens
+   Source: Nextora Labs Visual Design System (§1 Color, §2 Typography, §3 Layout)
+   --------------------------------------------------------------------------- */
+
+@theme {
+  /* Dark surfaces — deep navy, deliberately not pure black */
+  --color-ink-900: #0b0f17;
+  --color-ink-800: #121826;
+  --color-ink-700: #1b2333;
+
+  /* Accents — used separately, never blended into a gradient */
+  --color-accent: #4c6fff;
+  --color-accent-violet: #8b6cff;
+
+  /* Text on dark */
+  --color-paper: #f5f4f1;
+  --color-muted: #a7adb8;
+
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ---------------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------------- */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--color-ink-900);
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink-900);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------------------------------------------------------------------------
+   Ambient layers — dot grid + film grain (§5: subtle patterns at 3–6% only)
+   --------------------------------------------------------------------------- */
+
+.field-grid {
+  background-image: radial-gradient(
+    circle at center,
+    rgba(167, 173, 184, 0.5) 1px,
+    transparent 1px
+  );
+  background-size: 32px 32px;
+  opacity: 0.05;
+  /* Clears the centre so the grid never competes with the glow */
+  -webkit-mask-image: radial-gradient(
+    62% 52% at 50% 62%,
+    transparent 0%,
+    #000 78%
+  );
+  mask-image: radial-gradient(62% 52% at 50% 62%, transparent 0%, #000 78%);
+}
+
+.field-grain {
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------------------------------------------------------------------------
+   The dome — a rim-lit horizon rising through a hairline rule.
+   Geometry built from the brand accent rather than stock sci-fi imagery.
+   --------------------------------------------------------------------------- */
+
+.dome-stage {
+  position: relative;
+  width: 100%;
+  height: clamp(220px, 29vh, 330px);
+  overflow: hidden;
+  /* Softens the clip at both edges so neither the glow nor the dome body seams */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 16%,
+    #000 74%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 16%,
+    #000 74%,
+    transparent 100%
+  );
+}
+
+/* Hairline horizon — passes behind the dome, fades out at both edges */
+.dome-horizon {
+  position: absolute;
+  inset-inline: 0;
+  top: 76%;
+  height: 1px;
+  background: rgba(245, 244, 241, 0.14);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 22%,
+    #000 78%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 22%,
+    #000 78%,
+    transparent
+  );
+}
+
+.dome {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(200px, 44vw, 460px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    100% 100% at 50% 0%,
+    rgba(76, 111, 255, 0.14) 0%,
+    rgba(18, 24, 38, 0.62) 26%,
+    #0b0f17 58%
+  );
+  box-shadow:
+    0 0 0 1px rgba(76, 111, 255, 0.5),
+    0 0 18px 0 rgba(76, 111, 255, 0.45),
+    0 0 56px 4px rgba(76, 111, 255, 0.26),
+    0 0 140px 30px rgba(76, 111, 255, 0.12);
+}
+
+/* ---------------------------------------------------------------------------
+   Typography
+   --------------------------------------------------------------------------- */
+
+.statement {
+  /* Heavy tracking makes this run wide — the vw term must carry small screens */
+  font-size: clamp(1.25rem, 7.2vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: 0.3em;
+  /* Tracking adds trailing space — nudge back to optical centre */
+  text-indent: 0.3em;
+  color: var(--color-paper);
+}
+
+.wordmark {
+  font-family: var(--font-mono);
+  font-size: clamp(0.625rem, 1.5vw, 0.75rem);
+  font-weight: 500;
+  letter-spacing: 0.44em;
+  text-indent: 0.44em;
+  color: var(--color-accent);
+}
+
+.micro {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(167, 173, 184, 0.6);
+}
+
+.lede {
+  font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+  line-height: 1.65;
+  color: var(--color-muted);
+}
+
+/* Keeps the two rail labels on one line each down to 320px */
+@media (max-width: 30rem) {
+  .micro {
+    font-size: 0.625rem;
+    letter-spacing: 0.14em;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Links
+   --------------------------------------------------------------------------- */
+
+.contact-link {
+  position: relative;
+  color: var(--color-paper);
+  text-decoration: none;
+  transition: color 240ms ease;
+}
+
+.contact-link::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -5px;
+  height: 1px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contact-link:hover {
+  color: var(--color-accent);
+}
+
+.contact-link:hover::after,
+.contact-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.contact-link:focus-visible {
+  outline: 2px solid rgba(76, 111, 255, 0.6);
+  outline-offset: 6px;
+  border-radius: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Motion — slow and restrained. Fully disabled under reduced-motion.
+   --------------------------------------------------------------------------- */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes breathe {
+  from {
+    opacity: 0.82;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.rise {
+  opacity: 0;
+  animation: rise 1100ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.dome {
+  animation: breathe 13s ease-in-out infinite alternate;
+}
+
+.status-dot {
+  animation: pulse-dot 3.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .dome,
+  .status-dot {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }

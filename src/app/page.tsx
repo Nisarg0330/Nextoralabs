@@ -1,65 +1,117 @@
-import Image from "next/image";
+// Edit these two before deploying — both are placeholders.
+const CONTACT_EMAIL = "hello@nextoralabs.com";
+const LINKEDIN_URL = "https://www.linkedin.com/company/nextoralabs";
 
-export default function Home() {
+/** Logomark: the page composition in miniature — an accent arc rising through a horizon. */
+function Logomark() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <svg
+      width="26"
+      height="26"
+      viewBox="0 0 26 26"
+      fill="none"
+      aria-hidden="true"
+    >
+      <rect x="0.5" y="0.5" width="25" height="25" rx="7" stroke="#1B2333" />
+      <path d="M4 18.5h18" stroke="#F5F4F1" strokeOpacity="0.16" />
+      <path
+        d="M6 18.5a7 7 0 0 1 14 0"
+        stroke="#4C6FFF"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export default function ComingSoon() {
+  const year = new Date().getFullYear();
+
+  return (
+    <div className="relative flex min-h-dvh flex-col overflow-hidden bg-ink-900">
+      {/* Ambient layers */}
+      <div className="field-grid pointer-events-none absolute inset-0" />
+      <div className="field-grain pointer-events-none absolute inset-0" />
+
+      {/* Top rail */}
+      <header className="rise relative z-10 flex items-center justify-between px-5 py-8 md:px-16">
+        <span role="img" aria-label="Nextora Labs">
+          <Logomark />
+        </span>
+        <span className="micro">Canada · North America</span>
+      </header>
+
+      {/* Centre stack */}
+      <main className="relative z-10 flex flex-1 flex-col items-center justify-center">
+        <div
+          className="rise w-full"
+          style={{ animationDelay: "120ms" }}
+          aria-hidden="true"
+        >
+          <div className="dome-stage">
+            <div className="dome-horizon" />
+            <div className="dome" />
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+        <div className="flex flex-col items-center px-5 text-center md:px-16">
+          <h1 className="statement rise" style={{ animationDelay: "320ms" }}>
+            COMING SOON
+          </h1>
+
+          <p
+            className="wordmark rise mt-6"
+            style={{ animationDelay: "440ms" }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            NEXTORA LABS
+          </p>
+
+          <p
+            className="lede rise mt-10 max-w-[46ch] text-balance"
+            style={{ animationDelay: "560ms" }}
+          >
+            A founder-led Canadian technology company building web, mobile, and
+            AI products for startups across North America. The site is on its
+            way — we&rsquo;re already taking on new projects.
+          </p>
+
+          <div
+            className="rise mt-12 flex flex-col items-center gap-5 text-sm sm:flex-row sm:gap-8"
+            style={{ animationDelay: "680ms" }}
+          >
+            <a className="contact-link" href={`mailto:${CONTACT_EMAIL}`}>
+              {CONTACT_EMAIL}
+            </a>
+            <span
+              className="hidden h-3 w-px bg-ink-700 sm:block"
+              aria-hidden="true"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <a
+              className="contact-link"
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+          </div>
         </div>
       </main>
+
+      {/* Bottom rail */}
+      <footer
+        className="rise relative z-10 flex items-center justify-between px-5 py-8 md:px-16"
+        style={{ animationDelay: "800ms" }}
+      >
+        <span className="micro">© {year} Nextora Labs</span>
+        <span className="micro flex items-center gap-2.5">
+          <span
+            className="status-dot size-1.5 rounded-full bg-accent-violet"
+            aria-hidden="true"
+          />
+          Site in development
+        </span>
+      </footer>
     </div>
   );
 }
