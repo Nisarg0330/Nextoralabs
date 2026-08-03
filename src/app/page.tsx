@@ -1,5 +1,5 @@
-// Edit these two before deploying — both are placeholders.
-const CONTACT_EMAIL = "hello@nextoralabs.com";
+const CONTACT_EMAIL = "info@nextoralabs.ca";
+// Placeholder — replace with the real company page before deploying.
 const LINKEDIN_URL = "https://www.linkedin.com/company/nextoralabs";
 
 /** Logomark: the page composition in miniature — an accent arc rising through a horizon. */
