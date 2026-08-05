@@ -513,10 +513,12 @@ body.nav-open{overflow:hidden}
   transition:transform 420ms var(--e);display:flex;flex-direction:column;justify-content:center;padding:0 40px}
 body.nav-open .mobile-panel{transform:translateY(0)}
 .mobile-panel ul{list-style:none;display:flex;flex-direction:column;gap:6px}
-.mobile-panel a{font-size:34px;font-weight:300;color:var(--t1);padding:14px 0;display:block;border-top:1px solid var(--hair)}
-.mobile-panel li:last-child a{border-bottom:1px solid var(--hair)}
-.mobile-panel a.on{color:var(--em)}
-.mobile-panel .mp-cta{margin-top:34px}
+/* scoped to ul — unscoped, this also hit .mp-cta and blew the button's
+   label up to 34px, wrapping its arrow onto a second line */
+.mobile-panel ul a{font-size:34px;font-weight:300;color:var(--t1);padding:14px 0;display:block;border-top:1px solid var(--hair)}
+.mobile-panel ul li:last-child a{border-bottom:1px solid var(--hair)}
+.mobile-panel ul a.on{color:var(--em)}
+.mobile-panel .mp-cta{margin-top:34px;justify-content:center}
 
 /* =========================================================
    RESPONSIVE — additive. Desktop rules above are untouched;
