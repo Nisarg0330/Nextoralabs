@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://nextoralabs.ca/index.html</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://nextoralabs.ca/services.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nextoralabs.ca/process.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nextoralabs.ca/about.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nextoralabs.ca/contact.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nextoralabs.ca/blog/index.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://nextoralabs.ca/blog/what-makes-an-mvp-worth-building.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://nextoralabs.ca/blog/where-ai-automation-saves-time.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://nextoralabs.ca/blog/choosing-a-tech-stack.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://nextoralabs.ca/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://nextoralabs.ca/terms.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>
