@@ -1,0 +1,13 @@
+{
+  "name": "Nextora Labs",
+  "short_name": "Nextora Labs",
+  "description": "A two-founder software engineering company building web, mobile, and AI systems from Toronto, Canada.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0A0D13",
+  "theme_color": "#0A0D13",
+  "icons": [
+    { "src": "assets/img/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/img/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
